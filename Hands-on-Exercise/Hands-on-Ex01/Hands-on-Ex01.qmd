@@ -19,7 +19,7 @@ pacman::p_load(tidyverse)
 exam_data <- read_csv("data/Exam_data.csv")
 ```
 
-# Plotting a simple bar chart
+# Plotting a simple bar chart (code chunk only)
 
 ```{r}
 #| eval: false
@@ -28,7 +28,7 @@ ggplot(data = exam_data,
   geom_bar()
 ```
 
-# Plotting a simple bar chart
+# Plotting a simple bar chart (chart only)
 
 ```{r}
 #| echo: false
