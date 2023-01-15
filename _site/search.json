@@ -7,24 +7,94 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ISSS608-VAA",
-    "section": "",
-    "text": "Welcome to ISSS608 Visual Analytics & Applications. In this website, you will find my coursework prepared for this course."
-  },
-  {
-    "objectID": "Hands-on-Exercise/Hands-on-Ex01/Hands-on-Ex01.html",
-    "href": "Hands-on-Exercise/Hands-on-Ex01/Hands-on-Ex01.html",
-    "title": "Hands-on Exercise 1",
-    "section": "",
-    "text": "The code chunk below uses p_load() of pacman package to check if tidyverse packages have been installed in the computer. If they are, then they will be launched into R.\n\npacman::p_load(tidyverse)\n\n\n\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
-  },
-  {
     "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html",
     "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html",
     "title": "Hands-on Exercise 1",
     "section": "",
     "text": "The code chunk below uses p_load() of pacman package to check if tidyverse packages have been installed in the computer. If they are, then they will be launched into R.\n\npacman::p_load(tidyverse)\n\n\n\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#bar-chart",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#bar-chart",
+    "title": "Hands-on Exercise 1",
+    "section": "Bar Chart",
+    "text": "Bar Chart\n\nggplot(data = exam_data,\n       aes(x = RACE)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#dotplot",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#dotplot",
+    "title": "Hands-on Exercise 1",
+    "section": "Dotplot",
+    "text": "Dotplot\n\nggplot(data = exam_data,\n       aes(x = MATHS)) +\n  geom_dotplot(binwidth = 2.5,\n               dotsize = 0.5) +\n  scale_y_continuous(NULL, \n                     breaks = NULL)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#histogram",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#histogram",
+    "title": "Hands-on Exercise 1",
+    "section": "Histogram",
+    "text": "Histogram\n\nggplot(data = exam_data,\n       aes(x = MATHS)) +\n  geom_histogram(bins = 20,\n                 color = \"black\",\n                 fill = \"pink\")\n\n\n\n\n\nggplot(data = exam_data,\n       aes(x = MATHS,\n           fill = GENDER)) +\n  geom_histogram(bins = 20,\n                 color = \"black\")"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#kernel-density-estimate",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#kernel-density-estimate",
+    "title": "Hands-on Exercise 1",
+    "section": "Kernel Density Estimate",
+    "text": "Kernel Density Estimate\n\nggplot(data = exam_data,\n       aes(x = MATHS)) +\n  geom_density()\n\n\n\n\n\nggplot(data = exam_data,\n       aes(x = MATHS, \n           colour = GENDER)) +\n  geom_density()"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#boxplot",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#boxplot",
+    "title": "Hands-on Exercise 1",
+    "section": "Boxplot",
+    "text": "Boxplot\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = GENDER)) +\n  geom_boxplot()\n\n\n\n\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = GENDER)) +\n  geom_boxplot(notch = TRUE)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#boxplot-point",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#boxplot-point",
+    "title": "Hands-on Exercise 1",
+    "section": "Boxplot + Point",
+    "text": "Boxplot + Point\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = GENDER)) +\n  geom_boxplot() +\n  geom_point(position = \"jitter\",\n             size = 0.5)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#violin",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#violin",
+    "title": "Hands-on Exercise 1",
+    "section": "Violin",
+    "text": "Violin\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = GENDER)) +\n  geom_violin()"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#violin-boxplot",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#violin-boxplot",
+    "title": "Hands-on Exercise 1",
+    "section": "Violin + Boxplot",
+    "text": "Violin + Boxplot\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = GENDER)) +\n  geom_violin(fill = \"light yellow\") +\n  geom_boxplot(alpha = 0.5)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#scatter-plot-point",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#scatter-plot-point",
+    "title": "Hands-on Exercise 1",
+    "section": "Scatter Plot (Point)",
+    "text": "Scatter Plot (Point)\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = ENGLISH)) +\n  geom_point()"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#best-fit-curve",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#best-fit-curve",
+    "title": "Hands-on Exercise 1",
+    "section": "Best Fit Curve",
+    "text": "Best Fit Curve\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = ENGLISH)) +\n  geom_point() +\n  geom_smooth(size = 0.5)\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#best-fit-line",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#best-fit-line",
+    "title": "Hands-on Exercise 1",
+    "section": "Best Fit Line",
+    "text": "Best Fit Line\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = ENGLISH)) +\n  geom_point() +\n  geom_smooth(method = lm, size = 0.5)\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ISSS608 Visual Analytics & Applications",
+    "section": "",
+    "text": "Welcome to my website for ISSS608 Visual Analytics & Applications (Jan 2023 term). This is part of my coursework for the Masters of IT in Business (Analytics Track) at Singapore Management University."
   }
 ]

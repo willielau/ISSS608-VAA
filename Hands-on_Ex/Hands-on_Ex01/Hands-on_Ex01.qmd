@@ -1,9 +1,9 @@
 ---
 title: "Hands-on Exercise 1"
-author: "Willie Lau"
+date: last-modified
 ---
 
-# Getting Started
+# **Getting Started**
 
 ## Install and launching R packages
 
@@ -19,10 +19,181 @@ pacman::p_load(tidyverse)
 exam_data <- read_csv("data/Exam_data.csv")
 ```
 
-# Plotting a simple bar chart (code chunk only)
+# **Exploring ggplot2**
+
+## Bar Chart
 
 ```{r}
 ggplot(data = exam_data,
        aes(x = RACE)) +
   geom_bar()
 ```
+
+## Dotplot
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = MATHS)) +
+  geom_dotplot(binwidth = 2.5,
+               dotsize = 0.5) +
+  scale_y_continuous(NULL, 
+                     breaks = NULL)
+```
+
+## Histogram
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = MATHS)) +
+  geom_histogram(bins = 20,
+                 color = "black",
+                 fill = "pink")
+```
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = MATHS,
+           fill = GENDER)) +
+  geom_histogram(bins = 20,
+                 color = "black")
+```
+
+## Kernel Density Estimate
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = MATHS)) +
+  geom_density()
+```
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = MATHS, 
+           colour = GENDER)) +
+  geom_density()
+```
+
+## Boxplot
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = GENDER)) +
+  geom_boxplot()
+```
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = GENDER)) +
+  geom_boxplot(notch = TRUE)
+```
+
+## Boxplot + Point
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = GENDER)) +
+  geom_boxplot() +
+  geom_point(position = "jitter",
+             size = 0.5)
+```
+
+## Violin
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = GENDER)) +
+  geom_violin()
+```
+
+## Violin + Boxplot
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = GENDER)) +
+  geom_violin(fill = "light yellow") +
+  geom_boxplot(alpha = 0.5)
+```
+
+## Scatter Plot (Point)
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = ENGLISH)) +
+  geom_point()
+```
+
+## Best Fit Curve
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = ENGLISH)) +
+  geom_point() +
+  geom_smooth(size = 0.5)
+```
+
+## Best Fit Line
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS, 
+           x = ENGLISH)) +
+  geom_point() +
+  geom_smooth(method = lm, size = 0.5)
+```
+
+## Trellis Plot (Facet)
+
+```{r}
+ggplot(data = exam_data, 
+       aes(x = MATHS)) +
+  geom_histogram(bins = 20) +
+    facet_wrap(~ CLASS)
+```
+
+```{r}
+ggplot(data = exam_data, 
+       aes(x = MATHS)) +
+  geom_histogram(bins = 20) +
+    facet_grid(~ CLASS)
+```
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS,
+           x = CLASS)) +
+  geom_boxplot() +
+  facet_grid(~ GENDER)
+```
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS,
+           x = CLASS)) +
+  geom_boxplot() +
+  facet_grid(GENDER ~.)
+```
+
+```{r}
+ggplot(data = exam_data,
+       aes(y = MATHS,
+           x = GENDER)) +
+  geom_boxplot() +
+  facet_grid(GENDER ~ CLASS)
+```
+
+# **Tips & Tricks**
+
+To only show code chunk without the corresponding plots, use #\| eval: false
+
+![](images/Code%20chunk%20only.jpg)
+
+To only show plot without the corresponding code chunk, use #\| echo: false
+
+![](images/Plot%20only.jpg)
