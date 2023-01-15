@@ -96,5 +96,12 @@
     "title": "ISSS608 Visual Analytics & Applications",
     "section": "",
     "text": "Welcome to my website for ISSS608 Visual Analytics & Applications (Jan 2023 term). This is part of my coursework for the Masters of IT in Business (Analytics Track) at Singapore Management University."
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#trellis-plot-facet",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#trellis-plot-facet",
+    "title": "Hands-on Exercise 1",
+    "section": "Trellis Plot (Facet)",
+    "text": "Trellis Plot (Facet)\n\nggplot(data = exam_data, \n       aes(x = MATHS)) +\n  geom_histogram(bins = 20) +\n    facet_wrap(~ CLASS)\n\n\n\n\n\nggplot(data = exam_data, \n       aes(x = MATHS)) +\n  geom_histogram(bins = 20) +\n    facet_grid(~ CLASS)\n\n\n\n\n\nggplot(data = exam_data,\n       aes(y = MATHS,\n           x = CLASS)) +\n  geom_boxplot() +\n  facet_grid(~ GENDER)\n\n\n\n\n\nggplot(data = exam_data,\n       aes(y = MATHS,\n           x = CLASS)) +\n  geom_boxplot() +\n  facet_grid(GENDER ~.)\n\n\n\n\n\nggplot(data = exam_data,\n       aes(y = MATHS,\n           x = GENDER)) +\n  geom_boxplot() +\n  facet_grid(GENDER ~ CLASS)"
   }
 ]
