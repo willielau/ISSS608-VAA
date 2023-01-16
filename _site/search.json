@@ -91,13 +91,6 @@
     "text": "Best Fit Line\n\nggplot(data = exam_data,\n       aes(y = MATHS, \n           x = ENGLISH)) +\n  geom_point() +\n  geom_smooth(method = lm, size = 0.5)\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ISSS608 Visual Analytics & Applications",
-    "section": "",
-    "text": "Welcome to my website for ISSS608 Visual Analytics & Applications (Jan 2023 term). This is part of my coursework for the Masters of IT in Business (Analytics Track) at Singapore Management University."
-  },
-  {
     "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#trellis-plot-facet",
     "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#trellis-plot-facet",
     "title": "Hands-on Exercise 1",
@@ -145,5 +138,12 @@
     "title": "Hands-on Exercise 1",
     "section": "Makeover 4",
     "text": "Makeover 4\nCreate intercept grids and aligning x-axis and y-axis for a scatterplot\n\nggplot(data=exam_data, \n       aes(x=MATHS, y=ENGLISH)) +\n  geom_point() +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  geom_hline(yintercept=50,\n             linetype=\"dashed\",\n             color=\"grey60\",\n             size=1) + \n  geom_vline(xintercept=50, \n             linetype=\"dashed\",\n             color=\"grey60\",\n             size=1)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ISSS608 Visual Analytics & Applications",
+    "section": "",
+    "text": "Welcome to my website for ISSS608 Visual Analytics & Applications (Jan 2023 term). This is part of my coursework for the Masters of IT in Business (Analytics Track) at Singapore Management University."
   }
 ]
