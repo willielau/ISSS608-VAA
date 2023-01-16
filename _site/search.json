@@ -103,5 +103,47 @@
     "title": "Hands-on Exercise 1",
     "section": "Trellis Plot (Facet)",
     "text": "Trellis Plot (Facet)\n\nggplot(data = exam_data, \n       aes(x = MATHS)) +\n  geom_histogram(bins = 20) +\n    facet_wrap(~ CLASS)\n\n\n\n\n\nggplot(data = exam_data, \n       aes(x = MATHS)) +\n  geom_histogram(bins = 20) +\n    facet_grid(~ CLASS)\n\n\n\n\n\nggplot(data = exam_data,\n       aes(y = MATHS,\n           x = CLASS)) +\n  geom_boxplot() +\n  facet_grid(~ GENDER)\n\n\n\n\n\nggplot(data = exam_data,\n       aes(y = MATHS,\n           x = CLASS)) +\n  geom_boxplot() +\n  facet_grid(GENDER ~.)\n\n\n\n\n\nggplot(data = exam_data,\n       aes(y = MATHS,\n           x = GENDER)) +\n  geom_boxplot() +\n  facet_grid(GENDER ~ CLASS)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#working-with-coordinates",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#working-with-coordinates",
+    "title": "Hands-on Exercise 1",
+    "section": "Working with Coordinates",
+    "text": "Working with Coordinates\n\nggplot(data = exam_data, \n       aes(x = RACE)) +\n  geom_bar() +\n  coord_flip()\n\n\n\n\nAligning x-axis and y-axis ranges:\n\nggplot(data = exam_data,\n       aes(x = MATHS, y = ENGLISH)) +\n  geom_point() +\n  geom_smooth(method = lm,\n              size = 0.5) +\n  coord_cartesian(xlim = c(0,100),\n                  ylim = c(0,100))\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#working-with-themes",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#working-with-themes",
+    "title": "Hands-on Exercise 1",
+    "section": "Working with Themes",
+    "text": "Working with Themes\nA list of themes can be found at this link\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_gray()\n\n\n\n\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_classic()\n\n\n\n\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_minimal()\n\n\n\n\n\nggplot(data=exam_data, \n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_gray() +\n  theme(panel.background = element_rect(\n    fill = \"light blue\",\n    colour = \"light blue\",\n    linewidth = 0.5,\n    linetype = \"solid\"),\n    panel.grid.major = element_line(\n      linewidth = 0.5,\n      linetype = \"solid\",\n      colour = \"white\"),\n    panel.grid.minor = element_line(\n      linewidth = 0.25,\n      linetype = \"solid\",\n      colour = \"white\"))"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-1",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-1",
+    "title": "Hands-on Exercise 1",
+    "section": "Makeover 1",
+    "text": "Makeover 1\n\n\n\n\n\nIssues with the bar chart:\n\ny-axis (count) is not clear\nthe bars should be sorted by frequency\nfrequency values should be indicated for clarity\n\n\nggplot(data=exam_data,\n       aes(x=reorder(RACE,RACE,\n                function(x)-length(x))))+\n  geom_bar() +\n  ylim(0,220) +\n  geom_text(stat=\"count\", \n      aes(label=paste0(after_stat(count), \", \", \n      round(after_stat(count)/sum(after_stat(count))*100,\n            1), \"%\")),\n      vjust=-1) +\n  xlab(\"Race\") +\n  ylab(\"No. of\\nPupils\") +\n  theme(axis.title.y=element_text(angle = 0))\n\n\n\n\n\nexam_data %>%\n  mutate(RACE = fct_infreq(RACE)) %>%\n  ggplot(aes(x = RACE)) + \n  geom_bar()+\n  ylim(0,220) +\n  geom_text(stat=\"count\", \n      aes(label=paste0(after_stat(count), \", \", \n      round(after_stat(count)/sum(after_stat(count))*100,\n            1), \"%\")),\n      vjust=-1) +\n  xlab(\"Race\") +\n  ylab(\"No. of\\nPupils\") +\n  theme(axis.title.y=element_text(angle = 0))"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-2",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-2",
+    "title": "Hands-on Exercise 1",
+    "section": "Makeover 2",
+    "text": "Makeover 2\n\n\n\n\n\nIssues with the histogram:\n\nbins are not clear\nadd mean and median lines\n\n\nggplot(data = exam_data,\n       aes(x = MATHS)) +\n  geom_histogram(bins = 20,\n                 colour = \"black\",\n                 fill = \"light yellow\") +\n  geom_vline(aes(xintercept = mean(MATHS, na.rm = T)),\n             colour = \"red\",\n             linetype = \"dashed\",\n             size = 1) +\n  geom_vline(aes(xintercept = median(MATHS, na.rm = T)),\n             colour = \"purple\",\n             linetype = \"dashed\",\n             size = 1)"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-3",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-3",
+    "title": "Hands-on Exercise 1",
+    "section": "Makeover 3",
+    "text": "Makeover 3\nCreating a background histogram for total distribution within a facet wrap for two categories\n\nd <- exam_data   \nd_bg <- d[, -3]  \n\nggplot(d, aes(x = ENGLISH, fill = GENDER)) +\n  geom_histogram(data = d_bg, bins = 20, fill = \"grey\", alpha = .5) +\n  geom_histogram(bins =20, colour = \"black\") +\n  facet_wrap(~ GENDER) +\n  guides(fill = \"none\") +  \n  theme_bw()"
+  },
+  {
+    "objectID": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-4",
+    "href": "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html#makeover-4",
+    "title": "Hands-on Exercise 1",
+    "section": "Makeover 4",
+    "text": "Makeover 4\nCreate intercept grids and aligning x-axis and y-axis for a scatterplot\n\nggplot(data=exam_data, \n       aes(x=MATHS, y=ENGLISH)) +\n  geom_point() +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  geom_hline(yintercept=50,\n             linetype=\"dashed\",\n             color=\"grey60\",\n             size=1) + \n  geom_vline(xintercept=50, \n             linetype=\"dashed\",\n             color=\"grey60\",\n             size=1)"
   }
 ]
