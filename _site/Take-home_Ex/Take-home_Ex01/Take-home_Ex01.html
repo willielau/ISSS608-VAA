@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2023-01-22">
 
 <title>ISSS608-VAA - Take-home_Ex01</title>
 <style>
@@ -126,7 +127,19 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>1. Introduction</strong></a></li>
+  <li><a href="#age-sex-pyramid-visualization" id="toc-age-sex-pyramid-visualization" class="nav-link" data-scroll-target="#age-sex-pyramid-visualization">2. Age-Sex Pyramid Visualization</a></li>
+  <li><a href="#step-by-step-guide" id="toc-step-by-step-guide" class="nav-link" data-scroll-target="#step-by-step-guide">3. Step-by-Step Guide</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning-with-tableau-prep-builder" id="toc-data-cleaning-with-tableau-prep-builder" class="nav-link" data-scroll-target="#data-cleaning-with-tableau-prep-builder">3.1 Data Cleaning with Tableau Prep Builder</a></li>
+  <li><a href="#data-visualization-with-tableau-desktop" id="toc-data-visualization-with-tableau-desktop" class="nav-link" data-scroll-target="#data-visualization-with-tableau-desktop">3.2 Data Visualization with Tableau Desktop</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -141,6 +154,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 22, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -148,8 +167,96 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="introduction" class="level1">
+<h1><strong>1. Introduction</strong></h1>
+<p>Between January 2020 to June 2022, there were 73,247 real estate transactions in Singapore across all property types. It would be interesting to explore population demographics of the top 9 planning areas by volume of real estate transactions.</p>
+<p>The population demographic data used is “<em>Singapore Residents by Planning Area / Subzone, Age Group, Sex and Type of Dwelling, June 2022</em>” from the Department of Statistics, Singapore.</p>
+<p>The age-sex pyramid in a trellis display is used to show the demographic structure by gender and age group for each of these top 9 planning areas.</p>
+<p><img src="images/Heat Map.png" class="img-fluid"></p>
+<p><em>Source: REALIS, URA Singapore</em></p>
+</section>
+<section id="age-sex-pyramid-visualization" class="level1">
+<h1>2. Age-Sex Pyramid Visualization</h1>
+<p>The proposed age-sex pyramid in a trellis display visualization for the 9 planning areas by gender and age group is available for viewing on Tableau Public.</p>
+<p><img src="images/ASP.png" class="img-fluid"></p>
+<p>analytics blah blah blah</p>
+</section>
+<section id="step-by-step-guide" class="level1">
+<h1>3. Step-by-Step Guide</h1>
+<section id="data-cleaning-with-tableau-prep-builder" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-with-tableau-prep-builder">3.1 Data Cleaning with Tableau Prep Builder</h2>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 54%">
+<col style="width: 37%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>3.1.1</td>
+<td>Load the csv file</td>
+<td><img src="images/image-217311811.png" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td>3.1.2</td>
+<td>Rename column headers into more recognizable names</td>
+<td><img src="images/image-566936197.png" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td>3.1.3</td>
+<td>Modify “Age Group” so that it can be sorted in ascending order</td>
+<td><img src="images/image-1406478077.png" class="img-fluid" width="61"></td>
+</tr>
+<tr class="even">
+<td>3.1.4</td>
+<td>Output clean data as .hyper data extract for use in Tableau Desktop</td>
+<td><img src="images/image-44611041.png" class="img-fluid"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-visualization-with-tableau-desktop" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-with-tableau-desktop">3.2 Data Visualization with Tableau Desktop</h2>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 68%">
+<col style="width: 26%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>3.2.1</td>
+<td>Create calculated field for male and female population</td>
+<td><img src="images/image-325186948.png" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td>3.2.2</td>
+<td><p>Add “Planning Area”, “Male Population”, “Female Population” to columns</p>
+<p>Add “Age Group” to rows</p>
+<p>Add “Sex” to Colour and select desired colour</p></td>
+<td><img src="images/image-2082312666.png" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td>3.2.3</td>
+<td>Filter the 9 selected planning areas</td>
+<td><img src="images/image-1716685073.png" class="img-fluid" width="105"></td>
+</tr>
+<tr class="even">
+<td>3.2.4</td>
+<td>Reverse x-axis for male population to get the pyramid shape and standardize the range to ensure bar lengths are comparable</td>
+<td><img src="images/image-1424284316.png" class="img-fluid" width="141"></td>
+</tr>
+<tr class="odd">
+<td>3.2.5</td>
+<td>Make cosmetic changes to headers, axis, text, legend, etc. for cleaner and better look</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
