@@ -17,7 +17,7 @@ The age-sex pyramid in a trellis display is used to show the demographic structu
 
 # **2. Age-Sex Pyramid Visualization**
 
-The proposed age-sex pyramid in a trellis display visualization for the 9 planning areas by gender and age group is available for viewing on Tableau Public.
+The proposed age-sex pyramid in a trellis display visualization for the 9 planning areas by gender and age group is available for viewing on [Tableau Public](https://public.tableau.com/views/Take-home_Ex01_16743298500000/Dashboard1?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link).
 
 ![](images/ASP.png)
 
