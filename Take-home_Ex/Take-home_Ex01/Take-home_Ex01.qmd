@@ -11,46 +11,62 @@ The population demographic data used is "*Singapore Residents by Planning Area /
 
 The age-sex pyramid in a trellis display is used to show the demographic structure by gender and age group for each of these top 9 planning areas.
 
-![](images/Heat%20Map.png)
+![](images/HeatMap.png)
 
 *Source: REALIS, URA Singapore*
 
-# 2. Age-Sex Pyramid Visualization
+# **2. Age-Sex Pyramid Visualization**
 
 The proposed age-sex pyramid in a trellis display visualization for the 9 planning areas by gender and age group is available for viewing on Tableau Public.
 
 ![](images/ASP.png)
 
-analytics blah blah blah
+## 2.1 Negative Population Growth Rate
 
-# 3. Step-by-Step Guide
+The age-sex pyramid of all 9 planning areas point towards a negative population growth rate where the large age groups the middle outstrip the younger ones. The adults in these middle age
+groups will soon become seniors with higher dependency on younger family members for living cost burdens even as general living costs are on the rise. This is consistent with the general discourse on Singapore\'s aging population problem where the state is also concerned that the burden extends to state funding as well. More resources and facilities in areas such as health care will need to be provided by the government to support the rising number of seniors.
+
+This negative growth rate is to a certain extent less prevalent in planning areas such as Bukit Timah, Clementi, and Queenstown where housing prices tend to be higher than the others. This is
+quite surprising as these are some of the most mature estates in Singapore and would have expected to see a more distinct inverted triangle shape. One possible explanation is that since these areas are home to more affluent families, especially in Bukit Timah, they have the financial muscle to have more children with less concerns about the cost of doing so.
+
+## 2.2 Other Interesting Stray Observations
+
+-   A hypothesis can be made that females live longer than males as there seems to be more females in the higher age groups in every planning area. This trend starts around the 80-84 age group and becomes most distinct in the 90+ group.
+
+-   Below the 80-84 age group, the ratio of males to females appear to be quite equally split. Furthermore, the largest age groups also appear to be fairly consistent between the number of males and females
+
+-   Bukit Timah has the smallest total population size but interestingly topped the list at 5,390 transactions between January 2021 and June 2022.
+
+-   Pasir Ris land area is comparable to Sengkang and Hougang but much less densely populated.
+
+# **3. Step-by-Step Guide**
 
 ## 3.1 Data Cleaning with Tableau Prep Builder
 
-+--------+---------------------------------------------------------------------+-----------------------------------------------+
-| 3.1.1  | Load the csv file                                                   | ![](images/image-217311811.png)               |
-+--------+---------------------------------------------------------------------+-----------------------------------------------+
-| 3.1.2  | Rename column headers into more recognizable names                  | ![](images/image-566936197.png)               |
-+--------+---------------------------------------------------------------------+-----------------------------------------------+
-| 3.1.3  | Modify "Age Group" so that it can be sorted in ascending order      | ![](images/image-1406478077.png){width="61"}  |
-+--------+---------------------------------------------------------------------+-----------------------------------------------+
-| 3.1.4  | Output clean data as .hyper data extract for use in Tableau Desktop | ![](images/image-44611041.png)                |
-+--------+---------------------------------------------------------------------+-----------------------------------------------+
++-------------+---------------------------------------------------------------------+----------------------------------------------+
+| 3.1.1       | Load the csv file                                                   | ![](images/image-217311811.png)              |
++-------------+---------------------------------------------------------------------+----------------------------------------------+
+| 3.1.2       | Rename column headers into more recognizable names                  | ![](images/image-566936197.png)              |
++-------------+---------------------------------------------------------------------+----------------------------------------------+
+| 3.1.3       | Modify "Age Group" so that it can be sorted in descending order     | ![](images/image-1406478077.png){width="61"} |
++-------------+---------------------------------------------------------------------+----------------------------------------------+
+| 3.1.4       | Output clean data as .hyper data extract for use in Tableau Desktop | ![](images/image-44611041.png)               |
++-------------+---------------------------------------------------------------------+----------------------------------------------+
 
 ## 3.2 Data Visualization with Tableau Desktop
 
-+-------+----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-| 3.2.1 | Create calculated field for male and female population                                                                     | ![](images/image-325186948.png)               |
-+-------+----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-| 3.2.2 | Add "Planning Area", "Male Population", "Female Population" to columns                                                     | ![](images/image-2082312666.png)              |
-|       |                                                                                                                            |                                               |
-|       | Add "Age Group" to rows                                                                                                    |                                               |
-|       |                                                                                                                            |                                               |
-|       | Add "Sex" to Colour and select desired colour                                                                              |                                               |
-+-------+----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-| 3.2.3 | Filter the 9 selected planning areas                                                                                       | ![](images/image-1716685073.png){width="105"} |
-+-------+----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-| 3.2.4 | Reverse x-axis for male population to get the pyramid shape and standardize the range to ensure bar lengths are comparable | ![](images/image-1424284316.png){width="141"} |
-+-------+----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
-| 3.2.5 | Make cosmetic changes to headers, axis, text, legend, etc. for cleaner and better look                                     |                                               |
-+-------+----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
+| 3.2.1    | Create calculated field for male and female population                                                                                                                           | ![](images/image-325186948.png)               |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
+| 3.2.2    | Add "Planning Area", "Male Population", "Female Population" to columns                                                                                                           | ![](images/image-2082312666.png)              |
+|          |                                                                                                                                                                                  |                                               |
+|          | Add "Age Group" to rows                                                                                                                                                          |                                               |
+|          |                                                                                                                                                                                  |                                               |
+|          | Add "Sex" to Colour and select desired colour                                                                                                                                    |                                               |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
+| 3.2.3    | Filter the 9 selected planning areas                                                                                                                                             | ![](images/image-1716685073.png){width="105"} |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
+| 3.2.4    | Reverse y-axis to get descending order for age group, reverse x-axis for male population to get the pyramid shape and standardize the range to ensure bar lengths are comparable | ![](images/image-1424284316.png){width="141"} |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
+| 3.2.5    | Make cosmetic changes to headers, axis, text, legend, etc. for cleaner and better look. Prepare dashboard for publishing to Tableau Public.                                      |                                               |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
