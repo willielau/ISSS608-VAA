@@ -1,9 +1,9 @@
 ---
-title: "Take-home_Ex01"
+title: "Take-home Exercise 1"
 date: last-modified
 ---
 
-# **1. Introduction**
+## **1. Introduction**
 
 Between January 2020 to June 2022, there were 73,247 real estate transactions in Singapore across all property types. It would be interesting to explore population demographics of the top 9 planning areas by volume of real estate transactions.
 
@@ -15,21 +15,19 @@ The age-sex pyramid in a trellis display is used to show the demographic structu
 
 *Source: REALIS, URA Singapore*
 
-# **2. Age-Sex Pyramid Visualization**
+## **2. Age-Sex Pyramid Visualization**
 
 The proposed age-sex pyramid in a trellis display visualization for the 9 planning areas by gender and age group is available for viewing on [Tableau Public](https://public.tableau.com/views/Take-home_Ex01_16743298500000/Dashboard1?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link).
 
 ![](images/ASP.png)
 
-## 2.1 Negative Population Growth Rate
+#### **2.1 Negative Population Growth Rate**
 
-The age-sex pyramid of all 9 planning areas point towards a negative population growth rate where the large age groups the middle outstrip the younger ones. The adults in these middle age
-groups will soon become seniors with higher dependency on younger family members for living cost burdens even as general living costs are on the rise. This is consistent with the general discourse on Singapore\'s aging population problem where the state is also concerned that the burden extends to state funding as well. More resources and facilities in areas such as health care will need to be provided by the government to support the rising number of seniors.
+The age-sex pyramid of all 9 planning areas point towards a negative population growth rate where the large age groups the middle outstrip the younger ones. The adults in these middle age groups will soon become seniors with higher dependency on younger family members for living cost burdens even as general living costs are on the rise. This is consistent with the general discourse on Singapore's aging population problem where the state is also concerned that the burden extends to state funding as well. More resources and facilities in areas such as health care will need to be provided by the government to support the rising number of seniors.
 
-This negative growth rate is to a certain extent less prevalent in planning areas such as Bukit Timah, Clementi, and Queenstown where housing prices tend to be higher than the others. This is
-quite surprising as these are some of the most mature estates in Singapore and would have expected to see a more distinct inverted triangle shape. One possible explanation is that since these areas are home to more affluent families, especially in Bukit Timah, they have the financial muscle to have more children with less concerns about the cost of doing so.
+This negative growth rate is to a certain extent less prevalent in planning areas such as Bukit Timah, Clementi, and Queenstown where housing prices tend to be higher than the others. This is quite surprising as these are some of the most mature estates in Singapore and would have expected to see a more distinct inverted triangle shape. One possible explanation is that since these areas are home to more affluent families, especially in Bukit Timah, they have the financial muscle to have more children with less concerns about the cost of doing so.
 
-## 2.2 Other Interesting Stray Observations
+#### **2.2 Other Interesting Stray Observations**
 
 -   A hypothesis can be made that females live longer than males as there seems to be more females in the higher age groups in every planning area. This trend starts around the 80-84 age group and becomes most distinct in the 90+ group.
 
@@ -39,9 +37,9 @@ quite surprising as these are some of the most mature estates in Singapore and w
 
 -   Pasir Ris land area is comparable to Sengkang and Hougang but much less densely populated.
 
-# **3. Step-by-Step Guide**
+## **3. Step-by-Step Guide**
 
-## 3.1 Data Cleaning with Tableau Prep Builder
+#### **3.1 Data Cleaning with Tableau Prep Builder**
 
 +-------------+---------------------------------------------------------------------+----------------------------------------------+
 | 3.1.1       | Load the csv file                                                   | ![](images/image-217311811.png)              |
@@ -53,7 +51,7 @@ quite surprising as these are some of the most mature estates in Singapore and w
 | 3.1.4       | Output clean data as .hyper data extract for use in Tableau Desktop | ![](images/image-44611041.png)               |
 +-------------+---------------------------------------------------------------------+----------------------------------------------+
 
-## 3.2 Data Visualization with Tableau Desktop
+#### **3.2 Data Visualization with Tableau Desktop**
 
 +----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
 | 3.2.1    | Create calculated field for male and female population                                                                                                                           | ![](images/image-325186948.png)               |

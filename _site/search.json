@@ -140,13 +140,6 @@
     "text": "Makeover 4\nCreate intercept grids and aligning x-axis and y-axis for a scatterplot\n\nggplot(data=exam_data, \n       aes(x=MATHS, y=ENGLISH)) +\n  geom_point() +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  geom_hline(yintercept=50,\n             linetype=\"dashed\",\n             color=\"grey60\",\n             size=1) + \n  geom_vline(xintercept=50, \n             linetype=\"dashed\",\n             color=\"grey60\",\n             size=1)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ISSS608 Visual Analytics & Applications",
-    "section": "",
-    "text": "Welcome to my website for ISSS608 Visual Analytics & Applications (Jan 2023 term). This is part of my coursework for the Masters of IT in Business (Analytics Track) at Singapore Management University."
-  },
-  {
     "objectID": "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html",
     "href": "Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html",
     "title": "Hands-on Exercise 2",
@@ -154,45 +147,59 @@
     "text": "test"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ISSS608 Visual Analytics & Applications",
+    "section": "",
+    "text": "Welcome to my website for ISSS608 Visual Analytics & Applications (Jan 2023 term). This is part of my coursework for the Masters of IT in Business (Analytics Track) at Singapore Management University."
+  },
+  {
     "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html",
     "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html",
-    "title": "Take-home_Ex01",
+    "title": "Take-home Exercise 1",
     "section": "",
     "text": "Between January 2020 to June 2022, there were 73,247 real estate transactions in Singapore across all property types. It would be interesting to explore population demographics of the top 9 planning areas by volume of real estate transactions.\nThe population demographic data used is “Singapore Residents by Planning Area / Subzone, Age Group, Sex and Type of Dwelling, June 2022” from the Department of Statistics, Singapore.\nThe age-sex pyramid in a trellis display is used to show the demographic structure by gender and age group for each of these top 9 planning areas.\n\nSource: REALIS, URA Singapore"
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#data-cleaning-with-tableau-prep-builder",
-    "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#data-cleaning-with-tableau-prep-builder",
-    "title": "Take-home_Ex01",
-    "section": "3.1 Data Cleaning with Tableau Prep Builder",
-    "text": "3.1 Data Cleaning with Tableau Prep Builder\n\n\n\n\n\n\n\n\n3.1.1\nLoad the csv file\n\n\n\n3.1.2\nRename column headers into more recognizable names\n\n\n\n3.1.3\nModify “Age Group” so that it can be sorted in descending order\n\n\n\n3.1.4\nOutput clean data as .hyper data extract for use in Tableau Desktop"
+    "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#age-sex-pyramid-visualization",
+    "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#age-sex-pyramid-visualization",
+    "title": "Take-home Exercise 1",
+    "section": "2. Age-Sex Pyramid Visualization",
+    "text": "2. Age-Sex Pyramid Visualization\nThe proposed age-sex pyramid in a trellis display visualization for the 9 planning areas by gender and age group is available for viewing on Tableau Public.\n\n\n2.1 Negative Population Growth Rate\nThe age-sex pyramid of all 9 planning areas point towards a negative population growth rate where the large age groups the middle outstrip the younger ones. The adults in these middle age groups will soon become seniors with higher dependency on younger family members for living cost burdens even as general living costs are on the rise. This is consistent with the general discourse on Singapore’s aging population problem where the state is also concerned that the burden extends to state funding as well. More resources and facilities in areas such as health care will need to be provided by the government to support the rising number of seniors.\nThis negative growth rate is to a certain extent less prevalent in planning areas such as Bukit Timah, Clementi, and Queenstown where housing prices tend to be higher than the others. This is quite surprising as these are some of the most mature estates in Singapore and would have expected to see a more distinct inverted triangle shape. One possible explanation is that since these areas are home to more affluent families, especially in Bukit Timah, they have the financial muscle to have more children with less concerns about the cost of doing so.\n\n\n2.2 Other Interesting Stray Observations\n\nA hypothesis can be made that females live longer than males as there seems to be more females in the higher age groups in every planning area. This trend starts around the 80-84 age group and becomes most distinct in the 90+ group.\nBelow the 80-84 age group, the ratio of males to females appear to be quite equally split. Furthermore, the largest age groups also appear to be fairly consistent between the number of males and females\nBukit Timah has the smallest total population size but interestingly topped the list at 5,390 transactions between January 2021 and June 2022.\nPasir Ris land area is comparable to Sengkang and Hougang but much less densely populated."
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#data-visualization-with-tableau-desktop",
-    "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#data-visualization-with-tableau-desktop",
-    "title": "Take-home_Ex01",
-    "section": "3.2 Data Visualization with Tableau Desktop",
-    "text": "3.2 Data Visualization with Tableau Desktop\n\n\n\n\n\n\n\n\n3.2.1\nCreate calculated field for male and female population\n\n\n\n3.2.2\nAdd “Planning Area”, “Male Population”, “Female Population” to columns\nAdd “Age Group” to rows\nAdd “Sex” to Colour and select desired colour\n\n\n\n3.2.3\nFilter the 9 selected planning areas\n\n\n\n3.2.4\nReverse y-axis to get descending order for age group, reverse x-axis for male population to get the pyramid shape and standardize the range to ensure bar lengths are comparable\n\n\n\n3.2.5\nMake cosmetic changes to headers, axis, text, legend, etc. for cleaner and better look. Prepare dashboard for publishing to Tableau Public."
+    "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#step-by-step-guide",
+    "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#step-by-step-guide",
+    "title": "Take-home Exercise 1",
+    "section": "3. Step-by-Step Guide",
+    "text": "3. Step-by-Step Guide\n\n3.1 Data Cleaning with Tableau Prep Builder\n\n\n\n\n\n\n\n\n3.1.1\nLoad the csv file\n\n\n\n3.1.2\nRename column headers into more recognizable names\n\n\n\n3.1.3\nModify “Age Group” so that it can be sorted in descending order\n\n\n\n3.1.4\nOutput clean data as .hyper data extract for use in Tableau Desktop\n\n\n\n\n\n\n3.2 Data Visualization with Tableau Desktop\n\n\n\n\n\n\n\n\n3.2.1\nCreate calculated field for male and female population\n\n\n\n3.2.2\nAdd “Planning Area”, “Male Population”, “Female Population” to columns\nAdd “Age Group” to rows\nAdd “Sex” to Colour and select desired colour\n\n\n\n3.2.3\nFilter the 9 selected planning areas\n\n\n\n3.2.4\nReverse y-axis to get descending order for age group, reverse x-axis for male population to get the pyramid shape and standardize the range to ensure bar lengths are comparable\n\n\n\n3.2.5\nMake cosmetic changes to headers, axis, text, legend, etc. for cleaner and better look. Prepare dashboard for publishing to Tableau Public."
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#negative-population-growth-rate",
-    "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#negative-population-growth-rate",
-    "title": "Take-home_Ex01",
-    "section": "2.1 Negative Population Growth Rate",
-    "text": "2.1 Negative Population Growth Rate\nThe age-sex pyramid of all 9 planning areas point towards a negative population growth rate where the large age groups the middle outstrip the younger ones. The adults in these middle age groups will soon become seniors with higher dependency on younger family members for living cost burdens even as general living costs are on the rise. This is consistent with the general discourse on Singapore's aging population problem where the state is also concerned that the burden extends to state funding as well. More resources and facilities in areas such as health care will need to be provided by the government to support the rising number of seniors.\nThis negative growth rate is to a certain extent less prevalent in planning areas such as Bukit Timah, Clementi, and Queenstown where housing prices tend to be higher than the others. This is quite surprising as these are some of the most mature estates in Singapore and would have expected to see a more distinct inverted triangle shape. One possible explanation is that since these areas are home to more affluent families, especially in Bukit Timah, they have the financial muscle to have more children with less concerns about the cost of doing so."
-  },
-  {
-    "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#section",
-    "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#section",
-    "title": "Take-home_Ex01",
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html",
+    "title": "Take-home Exercise 2",
     "section": "",
-    "text": "2.2 Other Interesting Stray Observations\n\nA hypothesis can be made that females live longer than males as there seems to be more females in the higher age groups in every planning area. This trend starts around the 80-84 age group and becomes most distinct in the 90+ group.\nBelow the 80-84 age group, the ratio of males to females appear to be quite equally split. Furthermore, the largest age groups also appear to be fairly consistent between the number of males and females\nBukit Timah has the smallest total population size but interestingly topped the list at 5,390 transactions between January 2021 and June 2022.\nPasir Ris land area is comparable to Sengkang and Hougang but much less densely populated."
+    "text": "This Take-home Exercise 2 is a critique of a classmate’s Take-home Exercise 1 in terms of clarity and aesthetics.\nThe task for Take-home Exercise 1 is to produce age-sex pyramids in a trellis display to reveal the age group and gender demographic structures of 9 planning areas in Singapore using the “Singapore Residents by Planning Area, Subzone, Age Group, Sex, and Type of Dwelling, June 2022” dataset from the Department of Statistics, Singapore.\nThe original design was created using Tableau but will now be redone in R Studio, using data visualization principles and best practices learnt so far in the course."
   },
   {
-    "objectID": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#other-interesting-stray-observations",
-    "href": "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html#other-interesting-stray-observations",
-    "title": "Take-home_Ex01",
-    "section": "2.2 Other Interesting Stray Observations",
-    "text": "2.2 Other Interesting Stray Observations\n\nA hypothesis can be made that females live longer than males as there seems to be more females in the higher age groups in every planning area. This trend starts around the 80-84 age group and becomes most distinct in the 90+ group.\nBelow the 80-84 age group, the ratio of males to females appear to be quite equally split. Furthermore, the largest age groups also appear to be fairly consistent between the number of males and females\nBukit Timah has the smallest total population size but interestingly topped the list at 5,390 transactions between January 2021 and June 2022.\nPasir Ris land area is comparable to Sengkang and Hougang but much less densely populated."
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#getting-started",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#getting-started",
+    "title": "Take-home Exercise 2",
+    "section": "2. Getting Started",
+    "text": "2. Getting Started\nInstall necessary R packages:"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#critique-of-original-design",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#critique-of-original-design",
+    "title": "Take-home Exercise 2",
+    "section": "3. Critique of Original Design",
+    "text": "3. Critique of Original Design\n\n3.1 Original Design\n\n\n\n3.2 Clarity\nxx\n\n\n3.3 Aesthetics\nxx"
+  },
+  {
+    "objectID": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#new-design",
+    "href": "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html#new-design",
+    "title": "Take-home Exercise 2",
+    "section": "4. New Design",
+    "text": "4. New Design\n\n4.1 Sketch of Proposed Design\nxx\n\n\n4.2 Data Preparation\nxx\n\n\n4.3 Final Design\nxx"
   }
 ]

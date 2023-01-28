@@ -1,0 +1,44 @@
+---
+title: "Take-home Exercise 2"
+date: last-modified
+---
+
+## **1. Overview**
+
+This Take-home Exercise 2 is a critique of a classmate's Take-home Exercise 1 in terms of clarity and aesthetics.
+
+The task for Take-home Exercise 1 is to produce age-sex pyramids in a trellis display to reveal the age group and gender demographic structures of 9 planning areas in Singapore using the "Singapore Residents by Planning Area, Subzone, Age Group, Sex, and Type of Dwelling, June 2022" dataset from the Department of Statistics, Singapore.
+
+The original design was created using Tableau but will now be redone in R Studio, using data visualization principles and best practices learnt so far in the course.
+
+## **2. Getting Started**
+
+Install necessary R packages:
+
+## **3. Critique of Original Design**
+
+#### **3.1 Original Design**
+
+![](images/Original%20Design.png)
+
+#### **3.2 Clarity**
+
+xx
+
+#### **3.3 Aesthetics**
+
+xx
+
+## **4. New Design**
+
+#### **4.1 Sketch of Proposed Design**
+
+xx
+
+#### **4.2 Data Preparation**
+
+xx
+
+#### **4.3 Final Design**
+
+xx
