@@ -13,7 +13,17 @@ The original design was created using Tableau but will now be redone in R Studio
 
 ## **2. Getting Started**
 
-Install necessary R packages:
+Installing (if required) and launching necessary R packages:
+
+```{r}
+packages = c("tidyverse", "knitr", "patchwork")
+for(p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
 
 ## **3. Critique of Original Design**
 
@@ -31,14 +41,10 @@ xx
 
 ## **4. New Design**
 
-#### **4.1 Sketch of Proposed Design**
+#### **4.1 Data Preparation**
 
 xx
 
-#### **4.2 Data Preparation**
-
-xx
-
-#### **4.3 Final Design**
+#### **4.2 Final Design**
 
 xx
