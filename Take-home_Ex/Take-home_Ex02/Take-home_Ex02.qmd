@@ -54,11 +54,14 @@ for(p in packages){
   }
 ```
 
+```{r}
+pacman::p_load(tidyverse)
+```
+
 Loading the data:
 
 ```{r}
-#| eval: false
-data <- read_csv("data/respopagesextod2022.csv")
+popdata <- read_csv("data/respopagesextod2022.csv")
 ```
 
 Reformatting Age Group:
@@ -72,7 +75,7 @@ agegrp = c("0_to_4", "5_to_9", "10_to_14", "15_to_19",
            "80_to_84", "85_to_89", "90_and_over")
 
 for (a in agegrp){
-  data$AG[data$AG == a] <- c("0-04", "05-09", "10-14", "15-19",
+  popdata$AG[popdata$AG == a] <- c("0-04", "05-09", "10-14", "15-19",
                              "20-24", "25-29", "30-34", "35-39",
                              "40-44", "45-49", "50-54", "55-59",
                              "60-64", "65-69", "70-74", "75-79",
@@ -83,21 +86,9 @@ for (a in agegrp){
 #### **3.2 Final Design**
 
 ```{r}
-ggplot(data, 
+ggplot(popdata, 
        aes(x = AG, fill = Sex)) + 
   geom_bar() +
   facet_wrap(~ Sex) +
   coord_flip()
-```
-
-```{r}
-data_bg <- data[, -4]
-
-ggplot(data, aes(x = AG, fill = Sex)) +
-  geom_bar(data = data_bg, fill = "grey", alpha = .5) +
-  geom_bar(colour = "black") +
-  facet_wrap(PA ~ Sex) +
-  guides(fill = "none") +  
-  coord_flip() 
-  theme_bw()
 ```
