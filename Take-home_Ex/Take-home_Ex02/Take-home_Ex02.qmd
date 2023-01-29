@@ -29,6 +29,10 @@ The x-axis is not just inconsistent between the different planning areas but als
 
 While it is quite intuitive to guess that the numbers on the y-axis represents ages since this is called an age-sex pyramid, it would still be good to label it.
 
+[Choice of Planning Area]{.underline}
+
+The task required choosing 9 planning areas to visualize but there does not seem to be any rationale or logic for the choices made here.
+
 #### **2.3 Aesthetics**
 
 [Duplicate Displays]{.underline}
@@ -45,7 +49,14 @@ Installing (if required) and launching necessary R packages:
 
 ```{r}
 #| output: false
-pacman::p_load(tidyverse)
+packages = c('tidyverse','knitr', 'scales')
+
+for(p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p, character.only = T)
+}
 ```
 
 Loading the data:
@@ -74,12 +85,55 @@ for (a in agegrp){
   }
 ```
 
+Choosing the Top 9 Planning Areas by total size:
+
+```{r}
+top9 <- popdata %>%
+  group_by(PA) %>%
+  summarise_at(vars(Pop), sum) %>%
+  arrange(desc(Pop))
+
+top9 <- (top9[1:9,1])
+
+top9
+```
+
+```{r}
+for (x in top9){
+  top9data <- subset(popdata, PA == x)}
+```
+
+```{r}
+top9data <- top9data %>%
+  group_by(PA, AG, Sex)
+```
+
+Creating the male and female population dataframes from the Top 9 Planning Areas:
+
+```{r}
+Mtop9data <- top9data %>%
+  filter(., Sex=='Males')
+Ftop9data <- top9data %>% 
+  filter(., Sex=='Females') %>% 
+  mutate(., Pop = Pop*-1)
+```
+
 #### **3.2 Final Design**
 
 ```{r}
-ggplot(popdata, 
-       aes(x = AG, fill = Sex)) + 
-  geom_bar() +
-  facet_wrap(~ Sex) +
-  coord_flip()
+ggplot() +
+  geom_bar(Mtop9data, mapping = aes(x = AG, fill = Sex)) +
+  geom_bar(Mtop9data, mapping = aes(y = Pop, fill = Sex)) + 
+  geom_bar(Ftop9data, mapping = aes(x = AG, fill = Sex)) +
+  geom_bar(Ftop9data, mapping = aes(y = Pop, fill = Sex)) +
+  coord_flip() +
+  facet_wrap (~ PA)
+```
+
+```{r}
+ggplot() +
+  geom_bar(Mtop9data, mapping = aes(x = Pop, fill = Sex)) +
+  geom_bar(Ftop9data, mapping = aes(x = Pop, fill = Sex)) +
+  coord_flip() +
+  facet_wrap (~ PA)
 ```
