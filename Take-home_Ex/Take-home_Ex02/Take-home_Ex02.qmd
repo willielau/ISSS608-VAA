@@ -44,20 +44,21 @@ The one positive of the single row display is that at least the x-axis ranges ap
 Installing (if required) and launching necessary R packages:
 
 ```{r}
+#| output: false
 pacman::p_load(tidyverse)
 ```
 
 Loading the data:
 
 ```{r}
-# load data
+#| output: false
 popdata <- read_csv("data/respopagesextod2022.csv")
 ```
 
 Reformatting Age Group:
 
 ```{r}
-#| output: true
+#| output: false
 agegrp = c("0_to_4", "5_to_9", "10_to_14", "15_to_19", 
            "20_to_24", "25_to_29", "30_to_34", "35_to_39", 
            "40_to_44", "45_to_49", "50_to_54", "55_to_59",

@@ -267,102 +267,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Loading the data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>popdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/respopagesextod2022.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 100928 Columns: 7
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (5): PA, SZ, AG, Sex, TOD
-dbl (2): Pop, Time
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>popdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/respopagesextod2022.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reformatting Age Group:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>agegrp <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0_to_4"</span>, <span class="st">"5_to_9"</span>, <span class="st">"10_to_14"</span>, <span class="st">"15_to_19"</span>, </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">"20_to_24"</span>, <span class="st">"25_to_29"</span>, <span class="st">"30_to_34"</span>, <span class="st">"35_to_39"</span>, </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">"40_to_44"</span>, <span class="st">"45_to_49"</span>, <span class="st">"50_to_54"</span>, <span class="st">"55_to_59"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"60_to_64"</span>, <span class="st">"65_to_69"</span>, <span class="st">"70_to_74"</span>, <span class="st">"75_to_79"</span>, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">"80_to_84"</span>, <span class="st">"85_to_89"</span>, <span class="st">"90_and_over"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> agegrp){</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  popdata<span class="sc">$</span>AG[popdata<span class="sc">$</span>AG <span class="sc">==</span> a] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"0-04"</span>, <span class="st">"05-09"</span>, <span class="st">"10-14"</span>, <span class="st">"15-19"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"20-24"</span>, <span class="st">"25-29"</span>, <span class="st">"30-34"</span>, <span class="st">"35-39"</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"40-44"</span>, <span class="st">"45-49"</span>, <span class="st">"50-54"</span>, <span class="st">"55-59"</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"60-64"</span>, <span class="st">"65-69"</span>, <span class="st">"70-74"</span>, <span class="st">"75-79"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"80-84"</span>, <span class="st">"85-89"</span>, <span class="st">"90+"</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length
-
-Warning in popdata$AG[popdata$AG == a] &lt;- c("0-04", "05-09", "10-14", "15-19", :
-number of items to replace is not a multiple of replacement length</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>agegrp <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0_to_4"</span>, <span class="st">"5_to_9"</span>, <span class="st">"10_to_14"</span>, <span class="st">"15_to_19"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">"20_to_24"</span>, <span class="st">"25_to_29"</span>, <span class="st">"30_to_34"</span>, <span class="st">"35_to_39"</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">"40_to_44"</span>, <span class="st">"45_to_49"</span>, <span class="st">"50_to_54"</span>, <span class="st">"55_to_59"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"60_to_64"</span>, <span class="st">"65_to_69"</span>, <span class="st">"70_to_74"</span>, <span class="st">"75_to_79"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">"80_to_84"</span>, <span class="st">"85_to_89"</span>, <span class="st">"90_and_over"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> agegrp){</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  popdata<span class="sc">$</span>AG[popdata<span class="sc">$</span>AG <span class="sc">==</span> a] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"0-04"</span>, <span class="st">"05-09"</span>, <span class="st">"10-14"</span>, <span class="st">"15-19"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"20-24"</span>, <span class="st">"25-29"</span>, <span class="st">"30-34"</span>, <span class="st">"35-39"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"40-44"</span>, <span class="st">"45-49"</span>, <span class="st">"50-54"</span>, <span class="st">"55-59"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"60-64"</span>, <span class="st">"65-69"</span>, <span class="st">"70-74"</span>, <span class="st">"75-79"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"80-84"</span>, <span class="st">"85-89"</span>, <span class="st">"90+"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="final-design" class="level4">
 <h4 class="anchored" data-anchor-id="final-design"><strong>3.2 Final Design</strong></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(popdata, </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AG, <span class="at">fill =</span> Sex)) <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Sex) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(popdata, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AG, <span class="at">fill =</span> Sex)) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Sex) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Take-home_Ex02_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
