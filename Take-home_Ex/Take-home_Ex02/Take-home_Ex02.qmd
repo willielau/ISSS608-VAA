@@ -50,6 +50,7 @@ pacman::p_load(tidyverse)
 Loading the data:
 
 ```{r}
+# load data
 popdata <- read_csv("data/respopagesextod2022.csv")
 ```
 
