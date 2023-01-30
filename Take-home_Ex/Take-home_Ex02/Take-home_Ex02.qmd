@@ -105,7 +105,7 @@ for (x in top9){
 
 ```{r}
 top9data <- top9data %>%
-  group_by(PA, AG, Sex)
+ group_by(PA, AG, Sex)
 ```
 
 Creating the male and female population dataframes from the Top 9 Planning Areas:
@@ -121,19 +121,24 @@ Ftop9data <- top9data %>%
 #### **3.2 Final Design**
 
 ```{r}
+ggplot(data = popdata,
+        aes(x = Pop,
+            y = AG))+
+geom_bar(stat = "identity")+
+ggtitle("Distribution of Male")
+```
+
+```{r}
 ggplot() +
-  geom_bar(Mtop9data, mapping = aes(x = AG, fill = Sex)) +
-  geom_bar(Mtop9data, mapping = aes(y = Pop, fill = Sex)) + 
-  geom_bar(Ftop9data, mapping = aes(x = AG, fill = Sex)) +
-  geom_bar(Ftop9data, mapping = aes(y = Pop, fill = Sex)) +
+  geom_bar(Mtop9data, mapping = aes(x = AG, y = sum(Pop), fill = Sex), width = 0.8, stat = "identity") +
+  geom_bar(Ftop9data, mapping = aes(x = AG, y = sum(Pop), fill = Sex), width = 0.8, stat = "identity") +
   coord_flip() +
   facet_wrap (~ PA)
 ```
 
 ```{r}
 ggplot() +
-  geom_bar(Mtop9data, mapping = aes(x = Pop, fill = Sex)) +
-  geom_bar(Ftop9data, mapping = aes(x = Pop, fill = Sex)) +
-  coord_flip() +
+  geom_bar(Mtop9data, mapping = aes(x = Pop, y = AG, fill = Sex), width = 0.8, stat = "identity") +
+  geom_bar(Ftop9data, mapping = aes(x = Pop, y = AG, fill = Sex), width = 0.8, stat = "identity") +
   facet_wrap (~ PA)
 ```
