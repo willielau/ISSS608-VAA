@@ -49,7 +49,7 @@ Installing (if required) and launching necessary R packages:
 
 ```{r}
 #| output: false
-packages = c('tidyverse','knitr', 'scales')
+packages = c('tidyverse')
 
 for(p in packages){
   if(!require(p, character.only = T)){
@@ -64,6 +64,12 @@ Loading the data:
 ```{r}
 #| output: false
 popdata <- read_csv("data/respopagesextod2022.csv")
+```
+
+Removing null values:
+
+```{r}
+popdata <- na.omit(popdata)
 ```
 
 Reformatting Age Group:
@@ -99,46 +105,33 @@ top9
 ```
 
 ```{r}
+#| output: false
 for (x in top9){
   top9data <- subset(popdata, PA == x)}
-```
-
-```{r}
-top9data <- top9data %>%
- group_by(PA, AG, Sex)
 ```
 
 Creating the male and female population dataframes from the Top 9 Planning Areas:
 
 ```{r}
-Mtop9data <- top9data %>%
-  filter(., Sex=='Males')
-Ftop9data <- top9data %>% 
-  filter(., Sex=='Females') %>% 
-  mutate(., Pop = Pop*-1)
+Mtop9data <- filter(top9data, Sex == 'Males')
+Ftop9data <- filter(top9data, Sex == 'Females') %>% 
+  mutate(Pop = Pop*-1)
 ```
 
 #### **3.2 Final Design**
-
-```{r}
-ggplot(data = popdata,
-        aes(x = Pop,
-            y = AG))+
-geom_bar(stat = "identity")+
-ggtitle("Distribution of Male")
-```
 
 ```{r}
 ggplot() +
   geom_bar(Mtop9data, mapping = aes(x = AG, y = sum(Pop), fill = Sex), width = 0.8, stat = "identity") +
   geom_bar(Ftop9data, mapping = aes(x = AG, y = sum(Pop), fill = Sex), width = 0.8, stat = "identity") +
   coord_flip() +
-  facet_wrap (~ PA)
+  facet_wrap (~ PA) + 
+  ylab("Population") +
+  xlab("Age Group") +
+  theme(axis.text.y=element_text(size=rel(0.4))) +
+  ggtitle("Age-Sex Pyramid of Top 9 Planning Areas by Population, SG June 2022")
 ```
 
-```{r}
-ggplot() +
-  geom_bar(Mtop9data, mapping = aes(x = Pop, y = AG, fill = Sex), width = 0.8, stat = "identity") +
-  geom_bar(Ftop9data, mapping = aes(x = Pop, y = AG, fill = Sex), width = 0.8, stat = "identity") +
-  facet_wrap (~ PA)
-```
+There is unfortunately some error with the values for population count in the final design resulting in an age-sex pyramid that is clearly wrong. However, I cannot figure out where is the problem.
+
+Leaving aside the errors, this visualization provides greater clarity and aesthetics as compared to the original design.
