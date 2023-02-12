@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-01-21">
+<meta name="dcterms.date" content="2023-01-28">
 
-<title>ISSS608-VAA - Hands-on Exercise 2</title>
+<title>ISSS608-VAA - Take-home Exercise 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,14 +178,22 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>1. Introduction</strong></a></li>
+  <li><a href="#age-sex-pyramid-visualization" id="toc-age-sex-pyramid-visualization" class="nav-link" data-scroll-target="#age-sex-pyramid-visualization"><strong>2. Age-Sex Pyramid Visualization</strong></a></li>
+  <li><a href="#step-by-step-guide" id="toc-step-by-step-guide" class="nav-link" data-scroll-target="#step-by-step-guide"><strong>3. Step-by-Step Guide</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hands-on Exercise 2</h1>
+<h1 class="title">Take-home Exercise 1</h1>
 </div>
 
 
@@ -196,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 21, 2023</p>
+      <p class="date">January 28, 2023</p>
     </div>
   </div>
   
@@ -206,9 +214,109 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>test</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction"><strong>1. Introduction</strong></h2>
+<p>Between January 2020 to June 2022, there were 73,247 real estate transactions in Singapore across all property types. It would be interesting to explore population demographics of the top 9 planning areas by volume of real estate transactions.</p>
+<p>The population demographic data used is “<em>Singapore Residents by Planning Area / Subzone, Age Group, Sex and Type of Dwelling, June 2022</em>” from the Department of Statistics, Singapore.</p>
+<p>The age-sex pyramid in a trellis display is used to show the demographic structure by gender and age group for each of these top 9 planning areas.</p>
+<p><img src="images/HeatMap.png" class="img-fluid"></p>
+<p><em>Source: REALIS, URA Singapore</em></p>
+</section>
+<section id="age-sex-pyramid-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="age-sex-pyramid-visualization"><strong>2. Age-Sex Pyramid Visualization</strong></h2>
+<p>The proposed age-sex pyramid in a trellis display visualization for the 9 planning areas by gender and age group is available for viewing on <a href="https://public.tableau.com/views/Take-home_Ex01_16743298500000/Dashboard1?:language=en-GB&amp;publish=yes&amp;:display_count=n&amp;:origin=viz_share_link">Tableau Public</a>.</p>
+<p><img src="images/ASP.png" class="img-fluid"></p>
+<section id="negative-population-growth-rate" class="level4">
+<h4 class="anchored" data-anchor-id="negative-population-growth-rate"><strong>2.1 Negative Population Growth Rate</strong></h4>
+<p>The age-sex pyramid of all 9 planning areas point towards a negative population growth rate where the large age groups the middle outstrip the younger ones. The adults in these middle age groups will soon become seniors with higher dependency on younger family members for living cost burdens even as general living costs are on the rise. This is consistent with the general discourse on Singapore’s aging population problem where the state is also concerned that the burden extends to state funding as well. More resources and facilities in areas such as health care will need to be provided by the government to support the rising number of seniors.</p>
+<p>This negative growth rate is to a certain extent less prevalent in planning areas such as Bukit Timah, Clementi, and Queenstown where housing prices tend to be higher than the others. This is quite surprising as these are some of the most mature estates in Singapore and would have expected to see a more distinct inverted triangle shape. One possible explanation is that since these areas are home to more affluent families, especially in Bukit Timah, they have the financial muscle to have more children with less concerns about the cost of doing so.</p>
+</section>
+<section id="other-interesting-stray-observations" class="level4">
+<h4 class="anchored" data-anchor-id="other-interesting-stray-observations"><strong>2.2 Other Interesting Stray Observations</strong></h4>
+<ul>
+<li><p>A hypothesis can be made that females live longer than males as there seems to be more females in the higher age groups in every planning area. This trend starts around the 80-84 age group and becomes most distinct in the 90+ group.</p></li>
+<li><p>Below the 80-84 age group, the ratio of males to females appear to be quite equally split. Furthermore, the largest age groups also appear to be fairly consistent between the number of males and females</p></li>
+<li><p>Bukit Timah has the smallest total population size but interestingly topped the list at 5,390 transactions between January 2021 and June 2022.</p></li>
+<li><p>Pasir Ris land area is comparable to Sengkang and Hougang but much less densely populated.</p></li>
+</ul>
+</section>
+</section>
+<section id="step-by-step-guide" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-guide"><strong>3. Step-by-Step Guide</strong></h2>
+<section id="data-cleaning-with-tableau-prep-builder" class="level4">
+<h4 class="anchored" data-anchor-id="data-cleaning-with-tableau-prep-builder"><strong>3.1 Data Cleaning with Tableau Prep Builder</strong></h4>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 53%">
+<col style="width: 35%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>3.1.1</td>
+<td>Load the csv file</td>
+<td><img src="images/image-217311811.png" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td>3.1.2</td>
+<td>Rename column headers into more recognizable names</td>
+<td><img src="images/image-566936197.png" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td>3.1.3</td>
+<td>Modify “Age Group” so that it can be sorted in descending order</td>
+<td><img src="images/image-1406478077.png" class="img-fluid" width="61"></td>
+</tr>
+<tr class="even">
+<td>3.1.4</td>
+<td>Output clean data as .hyper data extract for use in Tableau Desktop</td>
+<td><img src="images/image-44611041.png" class="img-fluid"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-visualization-with-tableau-desktop" class="level4">
+<h4 class="anchored" data-anchor-id="data-visualization-with-tableau-desktop"><strong>3.2 Data Visualization with Tableau Desktop</strong></h4>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 74%">
+<col style="width: 20%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>3.2.1</td>
+<td>Create calculated field for male and female population</td>
+<td><img src="images/image-325186948.png" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td>3.2.2</td>
+<td><p>Add “Planning Area”, “Male Population”, “Female Population” to columns</p>
+<p>Add “Age Group” to rows</p>
+<p>Add “Sex” to Colour and select desired colour</p></td>
+<td><img src="images/image-2082312666.png" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td>3.2.3</td>
+<td>Filter the 9 selected planning areas</td>
+<td><img src="images/image-1716685073.png" class="img-fluid" width="105"></td>
+</tr>
+<tr class="even">
+<td>3.2.4</td>
+<td>Reverse y-axis to get descending order for age group, reverse x-axis for male population to get the pyramid shape and standardize the range to ensure bar lengths are comparable</td>
+<td><img src="images/image-1424284316.png" class="img-fluid" width="141"></td>
+</tr>
+<tr class="odd">
+<td>3.2.5</td>
+<td>Make cosmetic changes to headers, axis, text, legend, etc. for cleaner and better look. Prepare dashboard for publishing to Tableau Public.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

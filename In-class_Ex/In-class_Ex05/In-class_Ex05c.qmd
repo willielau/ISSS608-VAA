@@ -109,7 +109,6 @@ Other plotting features to ensure cartographic quality heatmap can be produced
 -   *xlab* and *ylab* are used to write the x-axis and y-axis labels respectively.
 
 ```{r}
-#| fig-height: 100
 heatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),
           Colv=NA,
           seriate = "none",
