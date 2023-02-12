@@ -1,6 +1,7 @@
 ---
-title: "Hands-on Exercise 1"
-date: last-modified
+title: "Hands-on Ex1: Programming Elegant DataViz"
+date: "January 11, 2023"
+date-modified: last-modified
 ---
 
 # **Getting Started**

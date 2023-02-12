@@ -1,0 +1,91 @@
+---
+title: "In-class Ex5a: Ternary Plots"
+date: "February 8, 2023"
+date-modified: "`r Sys.Date()`"
+execute:
+  echo: true
+  eval: true
+  warning: false
+---
+
+## **Ternary Plot**
+
+Installing and launching R packages, and loading data
+
+```{r}
+pacman::p_load(ggtern, plotly, tidyverse)
+pop_data <- read_csv("data/respopagsex2000to2018_tidy.csv") 
+```
+
+Preparing the data using pivot_wider() and mutate() functions from dplyr package
+
+```{r}
+agpop_mutated <- pop_data %>%
+  mutate(`Year` = as.character(Year))%>%
+  spread(AG, Population) %>%
+  mutate(YOUNG = rowSums(.[4:8]))%>%
+  mutate(ACTIVE = rowSums(.[9:16]))  %>%
+  mutate(OLD = rowSums(.[17:21])) %>%
+  mutate(TOTAL = rowSums(.[22:24])) %>%
+  filter(Year == 2018)%>%
+  filter(TOTAL > 0)
+```
+
+Note: spread() function is obsolete and should use pivot_wider() instead.
+
+Plotting a static ternary diagram using ggtern() function from ggtern package
+
+```{r}
+ggtern(data=agpop_mutated,aes(x=YOUNG,y=ACTIVE, z=OLD)) +
+  geom_point()
+```
+
+```{r}
+ggtern(data=agpop_mutated, aes(x=YOUNG,y=ACTIVE, z=OLD)) +
+  geom_point() +
+  labs(title="Population structure, 2015") +
+  theme_rgbw()
+```
+
+Plotting an interactive ternary diagram using plot_ly() function from Plotly package
+
+```{r}
+label <- function(txt) {
+  list(
+    text = txt, 
+    x = 0.1, y = 1,
+    ax = 0, ay = 0,
+    xref = "paper", yref = "paper", 
+    align = "center",
+    font = list(family = "serif", size = 15, color = "white"),
+    bgcolor = "#b3b3b3", bordercolor = "black", borderwidth = 2
+  )
+}
+
+axis <- function(txt) {
+  list(
+    title = txt, tickformat = ".0%", tickfont = list(size = 10)
+  )
+}
+
+ternaryAxes <- list(
+  aaxis = axis("Young"), 
+  baxis = axis("Active"), 
+  caxis = axis("Old")
+)
+
+plot_ly(
+  agpop_mutated, 
+  a = ~YOUNG, 
+  b = ~ACTIVE, 
+  c = ~OLD, 
+  color = I("black"), 
+  type = "scatterternary"
+) %>%
+  layout(
+    annotations = label("Ternary Markers"), 
+    ternary = ternaryAxes
+  )
+```
+
+## 

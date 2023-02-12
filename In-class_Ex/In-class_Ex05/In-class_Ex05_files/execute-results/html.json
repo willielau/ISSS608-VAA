@@ -1,0 +1,16 @@
+{
+  "hash": "92f053aaf7695ae01e8db44a32a9b3d6",
+  "result": {
+    "markdown": "---\ntitle: \"In-class Ex5: Multivariate Methods\"\ndate: \"February 8, 2023\"\ndate-modified: \"2023-02-12\"\nexecute:\n  echo: true\n  eval: true\n  warning: false\n---\n\n\n## **Correlation Matrix** \n\nInstalling and launching R packages, and loading data\n\n\n::: {.cell}\n\n```{.r .cell-code}\npacman::p_load(corrplot, ggstatsplot, tidyverse)\nwine <- read_csv(\"data/wine_quality.csv\")\n```\n:::\n\n\nBuilding a basic correlation matrix using pairs() function\n\n\n::: {.cell}\n\n```{.r .cell-code}\npairs(wine[,1:11])\n```\n\n::: {.cell-output-display}\n![](In-class_Ex05_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\nTo show the lower half or upper half of the correlation matrix\n\n\n::: {.cell}\n\n```{.r .cell-code}\npairs(wine[,2:12], upper.panel = NULL)\n```\n\n::: {.cell-output-display}\n![](In-class_Ex05_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\npairs(wine[,2:12], lower.panel = NULL)\n```\n\n::: {.cell-output-display}\n![](In-class_Ex05_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n:::\n\n\nTo include correlation coefficient of each pair of variables instead of a scatter plot using panel.cor() function. This will also show higher values in larger font.\n\n\n::: {.cell}\n\n```{.r .cell-code}\npanel.cor <- function(x, y, digits=2, prefix=\"\", cex.cor, ...) {\nusr <- par(\"usr\")\non.exit(par(usr))\npar(usr = c(0, 1, 0, 1))\nr <- abs(cor(x, y, use=\"complete.obs\"))\ntxt <- format(c(r, 0.123456789), digits=digits)[1]\ntxt <- paste(prefix, txt, sep=\"\")\nif(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)\ntext(0.5, 0.5, txt, cex = cex.cor * (1 + r) / 2)\n}\n\npairs(wine[,2:12], \n      upper.panel = panel.cor)\n```\n\n::: {.cell-output-display}\n![](In-class_Ex05_files/figure-html/unnamed-chunk-5-1.png){width=672}\n:::\n:::\n\n\nBuilding correlation matrix using ggcormat() from ggstatsplot package which has better visuals. However there is some conflict with ggtern package.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggstatsplot::ggcorrmat(data = wine,\n                       cor.vars = 1:11)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nggstatsplot::ggcorrmat(\n  data = wine, \n  cor.vars = 1:11,\n  ggcorrplot.args = list(outline.color = \"black\", \n                         hc.order = TRUE,\n                         tl.cex = 10),\n  title    = \"Correlogram for wine dataset\",\n  subtitle = \"Four pairs are no significant at p < 0.05\"\n)\n```\n\n::: {.cell-output-display}\n![](In-class_Ex05_files/figure-html/unnamed-chunk-7-1.png){width=672}\n:::\n:::\n\n\n## **Tips & Tricks** \n\nTo use a specific package's function if there is the same name from other packages, for example:\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndplyr::select()\n```\n:::\n",
+    "supporting": [
+      "In-class_Ex05_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

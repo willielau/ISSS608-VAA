@@ -1,5 +1,5 @@
 ---
-title: "In-class Exercise 3"
+title: "In-class Ex3: Interactive Data Visualization"
 date: "January 28, 2023"
 date-modified: last-modified
 execute:
