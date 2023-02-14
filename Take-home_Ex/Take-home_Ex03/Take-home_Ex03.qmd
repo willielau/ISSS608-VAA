@@ -1,0 +1,114 @@
+---
+title: "Take-home Ex3: Visual Statistical Analysis of Resale Flats in 2022"
+date: "February 10, 2023"
+date-modified: last-modified
+execute:
+  echo: true
+  eval: true
+  warning: false
+---
+
+Installing and launching R packages
+
+```{r}
+pacman::p_load(ggstatsplot, plotly, performance, corrplot, tidyverse)
+```
+
+Loading the data
+
+```{r}
+resale <- read.csv("data/resale.csv")
+```
+
+Filtering the data to the required scope of 3/4/5-ROOM types and for the time period of 2022
+
+```{r}
+filter1 <- c("3 ROOM", "4 ROOM", "5 ROOM")
+resale2022 <- filter(resale, resale$flat_type %in% filter1)
+
+filter2 <- c("2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12")
+resale2022 <- filter(resale2022, resale2022$month %in% filter2)
+```
+
+Calculating the price per sqm
+
+```{r}
+resale2022 <- resale2022 %>% mutate(price_sqm = resale_price / floor_area_sqm)
+```
+
+Check distribution of data
+
+```{r}
+ggplot(data = resale2022,
+       aes(x = price_sqm)) +
+  geom_histogram(bins = 50) +
+  facet_wrap(~ flat_type)
+```
+
+Using inverse to transform data with severe positive skew to fit normal distribution
+
+```{r}
+resale2022 <- resale2022 %>% mutate(adj_ppsm = 1/price_sqm)
+
+ggplot(data = resale2022,
+       aes(x = adj_ppsm)) +
+  geom_histogram(bins = 50) +
+  facet_wrap(~ flat_type)
+```
+
+One-way ANOVA test on Resale Prices by flat type
+
+```{r}
+ggbetweenstats(
+  data = resale2022,
+  x = flat_type,
+  y = adj_ppsm,
+  type = "p",
+  mean.ci = TRUE,
+  pairwise.comparisons = TRUE,
+  pairwise.display = "s",
+  p.adjust.method = "fdr",
+  messages = FALSE
+)
+```
+
+Scatterplot
+
+```{r}
+plot_ly(data = resale2022,
+        x = ~price_sqm,
+        y = ~floor_area_sqm,
+        color = ~flat_type)
+```
+
+Calculate lease term left
+
+```{r}
+resale2022 <- resale2022 %>% 
+  mutate(tenure = substr(remaining_lease, start = 1, stop = 2)) %>% 
+  mutate(tenure = as.numeric(tenure))
+```
+
+```{r}
+plot_ly(data = resale2022,
+        x = ~price_sqm,
+        y = ~tenure)
+```
+
+Price predictions
+
+```{r}
+model <- lm(resale_price ~ floor_area_sqm, lease_commence_date, tenure, 
+            data = resale2022)
+model
+```
+
+```{r}
+#check_c <- check_collinearity(model)
+#plot(check_c)
+```
+
+```{r}
+check_n <- check_normality(model)
+plot(check_n)
+```
