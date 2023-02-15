@@ -8,19 +8,33 @@ execute:
   warning: false
 ---
 
-Installing and launching R packages
+## **1. Introduction**
+
+The task is to uncover salient patterns of the resale prices of public housing in Singapore by using appropriate statistical analysis visualization techniques. For the purpose of this exercise, the focus is on 3/4/5-room flats in 2022.
+
+## **2. Selection & Design Considerations**
+
+As a subset of the focus area, we will dive deeper into the relationship between resale prices and flat sizes between the 3 flat types. The general rule of thumb for property prices is that there is an inverse correlation between prices and size, i.e. the larger property will have a lower per sqm price. We will be transforming the resale prices to its per sqm equivalent and see if there is any significant statistical difference to the mean prices per sqm across 3/4/5-room flat types.
+
+To achieve this, we will be using ANOVA to test the null hypothesis that the price per sqm means are the same across the 3 flat types. ANOVA is chosen because the data has more than two categorical sample groups and one numerical variable. We will also have to check for normality because ANOVA assumes that the data is normally distributed.
+
+## **3. Detailed Steps**
+
+#### **3.1 Installing and launching R packages**
 
 ```{r}
 pacman::p_load(ggstatsplot, plotly, performance, corrplot, tidyverse)
 ```
 
-Loading the data
+#### **3.2 Loading the data**
 
 ```{r}
 resale <- read.csv("data/resale.csv")
 ```
 
-Filtering the data to the required scope of 3/4/5-ROOM types and for the time period of 2022
+#### **3.3 Filtering the data** 
+
+We filter the data to the required scope of 3/4/5-ROOM types and for the time period of 2022
 
 ```{r}
 filter1 <- c("3 ROOM", "4 ROOM", "5 ROOM")
@@ -30,13 +44,17 @@ filter2 <- c("2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "
 resale2022 <- filter(resale2022, resale2022$month %in% filter2)
 ```
 
-Calculating the price per sqm
+#### **3.4 Calculating the price per sqm**
+
+We calculate the price per sqm to be able to compare the means across the different flat types
 
 ```{r}
 resale2022 <- resale2022 %>% mutate(price_sqm = resale_price / floor_area_sqm)
 ```
 
-Check distribution of data
+#### **3.5 Check distribution of data** 
+
+ANOVA requires data to be normally distributed
 
 ```{r}
 ggplot(data = resale2022,
@@ -45,7 +63,9 @@ ggplot(data = resale2022,
   facet_wrap(~ flat_type)
 ```
 
-Using inverse to transform data with severe positive skew to fit normal distribution
+#### **3.6 Additional data transformation** 
+
+We are not able to use ANOVA since the raw data is not normally distributed. Therefore one options is to transform the data to best fit a normal distribution. In this case where the data is severely positively skewed, we will inverse the values, i.e. 1/x.
 
 ```{r}
 resale2022 <- resale2022 %>% mutate(adj_ppsm = 1/price_sqm)
@@ -56,7 +76,9 @@ ggplot(data = resale2022,
   facet_wrap(~ flat_type)
 ```
 
-One-way ANOVA test on Resale Prices by flat type
+#### **3.7 ANOVA test** 
+
+With the data now somewhat more closely fitting a normal distribution, we can proceed with using the one-way ANOVA to test the null hypothesis that the price per sqm means are the same across the 3 flat type.
 
 ```{r}
 ggbetweenstats(
@@ -72,43 +94,25 @@ ggbetweenstats(
 )
 ```
 
-Scatterplot
+## **4. Interpretation of Results**
+
+As the p-value form the one-wau ANOVA test is less than the significance level of 0.05, we can reject the null hypothesis. We can therefore conclude that there is enough statistical evidence to support the statement that there are significant statistical differences between the price per sqm.
+
+However, ANOVA only proves that there are significant statistical difference between the 3 flat types but this is not sufficient to prove that larger floor areas equals to lower price per sqm. Therefore we will need to go further by using Tukey multiple pairwise comparisons to get our answer.
 
 ```{r}
-plot_ly(data = resale2022,
-        x = ~price_sqm,
-        y = ~floor_area_sqm,
-        color = ~flat_type)
+res.aov <- aov(adj_ppsm ~ flat_type, data = resale2022)
+TukeyHSD(res.aov)
 ```
 
-Calculate lease term left
+The results tell us that:
 
-```{r}
-resale2022 <- resale2022 %>% 
-  mutate(tenure = substr(remaining_lease, start = 1, stop = 2)) %>% 
-  mutate(tenure = as.numeric(tenure))
-```
+-   4-ROOM - 3-ROOM \< 0 but not significant
 
-```{r}
-plot_ly(data = resale2022,
-        x = ~price_sqm,
-        y = ~tenure)
-```
+-   5-ROOM - 3-ROOM \> 0 and significant
 
-Price predictions
+-   5-ROOM - 4-ROOM \> 0 and significant
 
-```{r}
-model <- lm(resale_price ~ floor_area_sqm, lease_commence_date, tenure, 
-            data = resale2022)
-model
-```
+Only 4-ROOM flats show a lower price per sqm than 3-ROOM flats but the p-value is higher than the confidence level so this difference is not significant. Therefore the results actually proves that the general rule of thumb that large flats equal to lower price per sqm is actually not statistically accurate.
 
-```{r}
-#check_c <- check_collinearity(model)
-#plot(check_c)
-```
-
-```{r}
-check_n <- check_normality(model)
-plot(check_n)
-```
+This is actually not surprising as the flat types in this exercise include all the different planning areas in Singapore which can be a huge factor towards determining the flat prices. Other variables such as remaining lease could potentially also play a part in affecting the prices. An better study would be to breakdown the data into smaller groups (same planning area, small range of remaining lease, etc.) and test between multiple groups.
