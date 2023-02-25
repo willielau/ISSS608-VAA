@@ -1,0 +1,16 @@
+---
+title: "Hands-on Ex7: Choropleth Mapping with R"
+date: "February 8, 2023"
+date-modified: "`r Sys.Date()`"
+execute:
+  echo: true
+  eval: true
+  warning: false
+---
+
+```{r}
+pacman::p_load(sf, tmap, tidyverse)
+mpsz <- st_read(dsn = "data/geospatial", 
+                layer = "MP14_SUBZONE_WEB_PL")
+popdata <- read_csv("data/aspatial/respopagesextod2011to2020.csv")
+```

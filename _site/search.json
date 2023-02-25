@@ -147,6 +147,13 @@
     "text": "test"
   },
   {
+    "objectID": "Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.html",
+    "href": "Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.html",
+    "title": "Hands-on Ex7: Choropleth Mapping with R",
+    "section": "",
+    "text": "pacman::p_load(sf, tmap, tidyverse)\nmpsz <- st_read(dsn = \"data/geospatial\", \n                layer = \"MP14_SUBZONE_WEB_PL\")\n\nReading layer `MP14_SUBZONE_WEB_PL' from data source \n  `C:\\willielau\\ISSS608-VAA\\Hands-on_Ex\\Hands-on_Ex07\\data\\geospatial' \n  using driver `ESRI Shapefile'\nSimple feature collection with 323 features and 15 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 2667.538 ymin: 15748.72 xmax: 56396.44 ymax: 50256.33\nProjected CRS: SVY21\n\npopdata <- read_csv(\"data/aspatial/respopagesextod2011to2020.csv\")"
+  },
+  {
     "objectID": "In-class_Ex/In-class_Ex03/In-class_Ex03.html",
     "href": "In-class_Ex/In-class_Ex03/In-class_Ex03.html",
     "title": "In-class Ex3: Interactive Data Visualization",

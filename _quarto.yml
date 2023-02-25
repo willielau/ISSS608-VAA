@@ -17,6 +17,8 @@ website:
           href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.html"
         - text: "Hands-on Ex 5"
           href: "Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html"
+        - text: "Hands-on Ex 6"
+          href: "Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html"
     - text: "Take-home Exercise"
       menu:
         - text: "Take-home Ex 1: Age-Sex Pyramid"
@@ -25,6 +27,8 @@ website:
           href: "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html"
         - text: "Take-home Ex 3: VSA of Resale Flats 2022"
           href: "Take-home_Ex/Take-home_Ex03/Take-home_Ex03.html"
+        - text: "Take-home Ex 4: Singapore Bi-lateral Trade"
+          href: "Take-home_Ex/Take-home_Ex04/Take-home_Ex04.html"
     - text: "In-class Exercise"
       menu:
         - text: "In-class Ex 3: Interactive Data Visualization"
@@ -37,7 +41,9 @@ website:
           href: "In-class_Ex/In-class_Ex05/In-class_Ex05b.html"
         - text: "In-class Ex 5c: Heat Maps"
           href: "In-class_Ex/In-class_Ex05/In-class_Ex05c.html"
-
+        - text: "In-class Ex 6: Time Series"
+          href: "In-class_Ex/In-class_Ex06/In-class_Ex06.html"
+        
     - text: "Project"
       href: "https://vaa-project8.netlify.app/"
       
