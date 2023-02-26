@@ -7,3 +7,169 @@ execute:
   eval: true
   warning: false
 ---
+
+## 1. Introduction
+
+The task is to uncover the impact of COVID-19 as well as the global economic and political dynamic in 2022 on Singapore's bi-lateral trade. For this purpose, the Merchandise Trade data provided by Department of Statistics, Singapore will be used but trimmed down to the period of Jan 2017 to Dec 2022 - i.e. the 3 years prior to COVID-19 and the 3 years of COVID-19.
+
+## 2. Selection & Design Considerations
+
+The visualization selected is Trellis plot line chart to examine the difference in trade balances between the pre-COVID years of 2017-2019 and the COVID years of 2020-2022 for the top 10 trade surplus and deficit countries over the 6 year period.
+
+## 3. Detailed Steps
+
+Installing and launching R Packages
+
+```{r}
+pacman::p_load(ggplot2, tidyverse)
+```
+
+Loading the data
+
+```{r}
+import <- read_csv("data/import.csv")
+export <- read_csv("data/export.csv")
+```
+
+Tidying up the Import data
+
+```{r}
+import$`Data Series` <- gsub("(Thousand Dollars)", "",
+                             as.character(import$`Data Series`))
+import$`Data Series` <- gsub("[[:punct:]]","", as.character(import$`Data Series`))
+import <- import %>% filter(!row_number() %in% c(1,2,3,4,5,6,7)) 
+import <- import[,-2] 
+import <- import[,-c(74:565)]
+colnames(import)[1] <- "Country"
+import <- import %>%
+  pivot_longer(!Country, names_to = "Date", values_to = "Import") %>% 
+  separate(Date, c("Year", "Month"))
+```
+
+Tidying up the Export data
+
+```{r}
+export$`Data Series` <- gsub("(Thousand Dollars)", "",
+                             as.character(export$`Data Series`))
+export$`Data Series` <- gsub("[[:punct:]]","", as.character(export$`Data Series`))
+export <- export %>% filter(!row_number() %in% c(1,2,3,4,5,6,7)) 
+export <- export[,-2] 
+export <- export[,-c(74:565)]
+colnames(export)[1] <- "Country"
+export <- export %>% 
+  pivot_longer(!Country, names_to = "Date", values_to = "Export") %>% 
+  separate(Date, c("Year", "Month"))
+```
+
+Joining the two tables and finding the trade balance
+
+```{r}
+import$joinkey <- paste(import$Country, import$Year, import$Month)
+export$joinkey <- paste(export$Country, export$Year, export$Month)
+trade <- import %>% inner_join(export, by = "joinkey")
+trade <- trade[,-c(5:8)]
+colnames(trade)[1] <- "Country"
+colnames(trade)[2] <- "Year"
+colnames(trade)[3] <- "Month"
+trade$`Trade Balance` <- trade$Export - trade$Import
+```
+
+Creating the pre and post COVID tables
+
+```{r}
+trade1719 <- trade %>% filter(Year %in% c("2017", "2018", "2019"))
+trade2022 <- trade %>% filter(Year %in% c("2020", "2021", "2022"))
+```
+
+Finding the top 10 trade surplus countries
+
+```{r}
+toptrade <- trade %>% 
+  group_by(Country) %>% 
+  summarise(`Trade Balance` = sum(`Trade Balance`))
+top10surplus <- toptrade %>% 
+  arrange(desc(`Trade Balance`)) %>% 
+  slice(1:10)
+top10surplus
+```
+
+```{r}
+trade1719_surplus <- trade1719 %>% 
+  filter(Country %in% top10surplus$Country) %>% 
+  mutate(Date = paste(Year, Month))
+trade2022_surplus <- trade2022 %>% 
+  filter(Country %in% top10surplus$Country) %>% 
+  mutate(Date = paste(Year, Month))
+```
+
+Finding the top 10 trade deficit countries
+
+```{r}
+top10deficit <- toptrade %>% 
+  arrange(`Trade Balance`) %>% 
+  slice(1:10)
+top10deficit
+```
+
+```{r}
+trade1719_deficit <- trade1719 %>% 
+  filter(Country %in% top10deficit$Country) %>% 
+  mutate(Date = paste(Year, Month))
+trade2022_deficit <- trade2022 %>% 
+  filter(Country %in% top10deficit$Country) %>% 
+  mutate(Date = paste(Year, Month))
+```
+
+Top 10 Trade Surplus Countries
+
+```{r}
+ggplot() +
+  geom_line(data = trade1719_surplus, aes(x = Date, y = `Trade Balance`/1000,
+                                          group = Country)) +
+  labs(title = "Top 10 Trade Surplus Countries 2017-2019", 
+       x = "", y = "Trade Balance (in SGD'M)") +
+  facet_wrap(vars(Country))
+```
+
+```{r}
+ggplot() +
+  geom_line(data = trade2022_surplus, aes(x = Date, y = `Trade Balance`/1000,
+                                          group = Country)) +
+  labs(title = "Top 10 Trade Surplus Countries 2020-2022", 
+       x = "", y = "Trade Balance (in SGD'M)") +
+  facet_wrap(vars(Country))
+```
+
+Top 10 Trade Deficit Countries
+
+```{r}
+ggplot() +
+  geom_line(data = trade1719_deficit, aes(x = Date, y = `Trade Balance`/1000,
+                                          group = Country)) +
+  labs(title = "Top 10 Trade Deficit Countries 2017-2019", 
+       x = "", y = "Trade Balance (in SGD'M)") +
+  facet_wrap(vars(Country))
+```
+
+```{r}
+ggplot() +
+  geom_line(data = trade2022_deficit, aes(x = Date, y = `Trade Balance`/1000,
+                                          group = Country)) +
+  labs(title = "Top 10 Trade Deficit Countries 2020-2022", 
+       x = "", y = "Trade Balance (in SGD'M)") +
+  facet_wrap(vars(Country))
+```
+
+## 4. Observations
+
+Top 10 Trade Surplus Countries
+
+-   The merchandise trade with China fluctuates wildly in the COVID years, not following the trends of the prior years. This is not unexpected given that China enforced extreme restrictions with their zero COVID policy resulting in trade being extremely volatile
+
+-   Trade balance with the other countries seem to have not been severely affect by COVID as the trends remain consistent between 2017-2019 and 2020-2022
+
+Top 10 Trade Deficit Countries
+
+-   Trade deficit seems to have widen with United States during the COVID years
+
+-   The same is observed with Malaysia. Perhaps with other borders closed, Singapore had to rely more heavily on our neighbours for trade.
